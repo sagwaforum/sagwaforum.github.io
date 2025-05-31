@@ -25,29 +25,31 @@ function containsBadWord(text) {
   return badWords.some(word => text.includes(word));
 }
 
-// 등록 이벤트
-document.getElementById('postForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+  import { db } from './firebase.js';
+  import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-  const nickname = document.getElementById('nickname').value.trim();
-  const title = document.getElementById('title').value.trim();
-  const category = document.getElementById('category').value;
-  const content = document.getElementById('content').value.trim();
+  document.getElementById("postForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  if (!nickname || !title || !content) {
-    alert("모든 항목을 입력해주세요.");
-    return;
-  }
+    const title = document.getElementById("title").value;
+    const nickname = document.getElementById("nickname").value;
+    const content = document.getElementById("content").value;
+    const category = document.getElementById("category").value;
 
-  if (
-    containsBadWord(nickname) ||
-    containsBadWord(title) ||
-    containsBadWord(content)
-  ) {
-    alert("욕설이 포함된 글은 등록할 수 없습니다.");
-    return;
-  }
+    try {
+      await addDoc(collection(db, "posts"), {
+        title,
+        nickname,
+        content,
+        category,
+        createdAt: serverTimestamp()
+      });
 
-  alert("글이 등록되었습니다!");
-  window.location.href = "index.html";
-});
+      alert("성공적으로 저장되었습니다!");
+      window.location.href = "index.html";
+    } catch (e) {
+      alert("오류 발생: " + e);
+    }
+  });
+
+
