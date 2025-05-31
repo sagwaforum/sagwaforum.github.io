@@ -25,31 +25,4 @@ function containsBadWord(text) {
   return badWords.some(word => text.includes(word));
 }
 
-  import { db } from './firebase.js';
-  import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-  document.getElementById("postForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById("title").value;
-    const nickname = document.getElementById("nickname").value;
-    const content = document.getElementById("content").value;
-    const category = document.getElementById("category").value;
-
-    try {
-      await addDoc(collection(db, "posts"), {
-        title,
-        nickname,
-        content,
-        category,
-        createdAt: serverTimestamp()
-      });
-
-      alert("성공적으로 저장되었습니다!");
-      window.location.href = "index.html";
-    } catch (e) {
-      alert("오류 발생: " + e);
-    }
-  });
-
-
+  
