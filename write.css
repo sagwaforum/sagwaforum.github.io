@@ -12,6 +12,7 @@ body {
   background: var(--bg);
   font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   color: var(--text);
+  text-align: center;
 }
 
 .container {
