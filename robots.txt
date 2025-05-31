@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sagwaforum.github.io/sitemap.xml
