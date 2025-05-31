@@ -3,7 +3,7 @@
 // 카드 생성 함수
 function createPostCard(post) {
   return `
-    <div class="post-card">
+    <div class="post-card" onclick="location.href='posts/${post.link}';">
       <div class="meta">📁 ${post.category} • ${post.date}</div>
       <h3 class="title">${post.title}</h3>
       <p class="summary">${post.summary}</p>
