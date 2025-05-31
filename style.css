@@ -1,0 +1,191 @@
+:root {
+  --accent: #007aff;
+  --bg: #f9f9f9;
+  --text: #1c1c1e;
+  --border: #ddd;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.search-group {
+  display: flex;
+  flex: 1;
+  max-width: 100%;
+  gap: 8px;
+}
+
+.search {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.search-btn {
+  padding: 8px 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.write-button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 본문 */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.sidebar {
+  background: white;
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.sidebar li {
+  padding: 8px 0;
+  cursor: pointer;
+  color: #333;
+}
+
+.sidebar li.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.community-status {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.main {
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.post-list {
+  display: grid;
+  gap: 16px;
+}
+
+/* 카드 */
+.post-card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.post-card .meta {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.post-card .title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.post-card .summary {
+  font-size: 14px;
+  color: #444;
+}
+
+/* 반응형 */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 220px;
+  }
+
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
