@@ -30,6 +30,32 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+  <script type="module">
+  import { db } from './firebase.js';
+  import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  async function loadPosts() {
+    const postList = document.querySelector(".post-list");
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    let html = "";
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      html += `
+        <div class="post-card">
+          <div class="meta">📁 ${data.category} • ${data.nickname}</div>
+          <h3 class="title">${data.title}</h3>
+          <p class="summary">${data.content}</p>
+        </div>
+      `;
+    });
+
+    postList.innerHTML = html || "<p>게시물이 없습니다</p>";
+  }
+
+  loadPosts();
+</script>
   
   <!-- 상단바 -->
   <header class="navbar">
