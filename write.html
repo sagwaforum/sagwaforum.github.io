@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>글쓰기 - 사과포럼</title>
+  <link rel="stylesheet" href="write.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>✍️ 새 글 작성</h1>
+    
+    <form id="postForm">
+      <label>
+        닉네임
+        <input type="text" id="nickname" required />
+      </label>
+
+      <label>
+        제목
+        <input type="text" id="title" required />
+      </label>
+
+      <label>
+        카테고리
+        <select id="category">
+          <option value="뉴스">📰 뉴스</option>
+          <option value="iPhone">📱 iPhone</option>
+          <option value="Mac">💻 Mac</option>
+          <option value="iPad">📲 iPad</option>
+          <option value="액세서리">🎧 액세서리</option>
+        </select>
+      </label>
+
+      <label>
+        내용
+        <textarea id="content" rows="6" required></textarea>
+      </label>
+
+      <button type="submit">등록하기</button>
+    </form>
+  </div>
+
+  <script src="write.js"></script>
+</body>
+</html>
