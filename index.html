@@ -7,36 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <script type="module">
-  import { db } from './firebase.js';
-  import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-  async function loadPosts() {
-    const postList = document.querySelector(".post-list");
-    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-    const querySnapshot = await getDocs(q);
-
-    db.collection("posts").orderBy("createdAt", "desc").get()
-      .then((querySnapshot) => {
-        const postsDiv = document.getElementById("posts");
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const post = document.createElement("div");
-          post.innerHTML = `<h2>${data.title}</h2><p>${data.content}</p>`;
-          postsDiv.appendChild(post);
-        });
-      })
-      .catch((error) => {
-        console.error("Error getting documents: ", error);
-      });
-
-    });
-
-    postList.innerHTML = html || "<p>게시물이 없습니다</p>";
-  }
-
-  loadPosts();
-</script>
   
   <!-- 상단바 -->
   <header class="navbar">
