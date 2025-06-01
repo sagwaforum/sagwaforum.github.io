@@ -34,7 +34,7 @@ function displayPosts(postArray) {
 displayPosts(posts);
 
 async function loadPosts() {
-  const res = await fetch("https://sagwa-sqlite.glitch.me/posts");
+  const res = await fetch("https://complex-plant-flavor.glitch.me/posts");
   const posts = await res.json();
 
   const list = document.querySelector(".post-list");
