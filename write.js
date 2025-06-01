@@ -33,23 +33,37 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
   const content = document.getElementById("content").value.trim();
   const category = document.getElementById("category").value;
 
+  if (!title || !nickname || !content) {
+    alert("모든 항목을 입력해주세요.");
+    return;
+  }
+
+  if (
+    containsBadWord(title.toLowerCase()) ||
+    containsBadWord(content.toLowerCase()) ||
+    containsBadWord(nickname.toLowerCase())
+  ) {
+    alert("욕설이 포함된 글은 등록할 수 없습니다.");
+    return;
+  }
+
   const post = { title, nickname, content, category };
 
   try {
-    const res = await fetch("https://complex-plant-flavor.glitch.me/posts", {
+    const res = await fetch(`${SERVER_URL}/posts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post)
+      body: JSON.stringify(post),
     });
 
     const result = await res.json();
     if (result.success) {
       alert("글이 등록되었습니다!");
       window.location.href = "index.html";
+    } else {
+      alert("등록 실패: " + result.error);
     }
   } catch (err) {
     alert("서버 오류: " + err.message);
   }
 });
-
-  
