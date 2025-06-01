@@ -1,24 +1,14 @@
+const SERVER_URL = "https://complex-plant-flavor.glitch.me";
 
+// 글 목록 불러오기
+async function loadPosts() {
+  const res = await fetch(`${SERVER_URL}/posts`);
+  const posts = await res.json();
 
-// 카드 생성 함수
-//function createPostCard(post) {
-//  return `
-//    <div class="post-card" onclick="location.href='posts/${post.link}';">
-//      <div class="meta">📁 ${post.category} • ${post.date}</div>
-//      <h3 class="title">${post.title}</h3>
-//      <p class="summary">${post.summary}</p>
-//    </div>
-//  `;
-//}
+  const list = document.querySelector(".post-list");
 
-// 출력 함수
-
-function displayPosts(postArray) {
-  const container = document.querySelector(".post-list");
-  if (!container) return;
-
-  if (postArray.length === 0) {
-    container.innerHTML = `
+  if (!posts.length) {
+    list.innerHTML = `
       <div class="empty">
         <div class="emoji">📱</div>
         <p class="title">게시물이 없습니다</p>
@@ -28,24 +18,9 @@ function displayPosts(postArray) {
     return;
   }
 
-  container.innerHTML = postArray.map(createPostCard).join("");
-}
-
-displayPosts(posts);
-
-async function loadPosts() {
-  const res = await fetch("https://complex-plant-flavor.glitch.me/posts");
-  const posts = await res.json();
-
-  const list = document.querySelector(".post-list");
-  if (!posts.length) {
-    list.innerHTML = "<p>게시물이 없습니다.</p>";
-    return;
-  }
-
   list.innerHTML = posts.map(p => `
     <div class="post-card">
-      <div class="meta">📁 ${p.category} • ${p.nickname} • ${p.createdAt.slice(0,10)}</div>
+      <div class="meta">📁 ${p.category} • ${p.nickname} • ${p.createdAt?.slice(0, 10) ?? ''}</div>
       <h3 class="title">${p.title}</h3>
       <p class="summary">${p.content}</p>
     </div>
