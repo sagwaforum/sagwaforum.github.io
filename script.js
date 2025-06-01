@@ -1,24 +1,33 @@
-  import { supabase } from './supabase.js';
 
-  async function loadPosts() {
-    const { data: posts, error } = await supabase
-      .from("posts")
-      .select("*")
-      .order("created_at", { ascending: false });
 
-    const list = document.querySelector(".post-list");
-    if (error || !posts) {
-      list.innerHTML = "<p>불러오기 실패</p>";
-      return;
-    }
+// 카드 생성 함수
+function createPostCard(post) {
+  return `
+    <div class="post-card" onclick="location.href='posts/${post.link}';">
+      <div class="meta">📁 ${post.category} • ${post.date}</div>
+      <h3 class="title">${post.title}</h3>
+      <p class="summary">${post.summary}</p>
+    </div>
+  `;
+}
 
-    list.innerHTML = posts.map(p => `
-      <div class="post-card">
-        <div class="meta">📁 ${p.category} • ${p.nickname} • ${p.created_at.slice(0,10)}</div>
-        <h3 class="title">${p.title}</h3>
-        <p class="summary">${p.content}</p>
+// 출력 함수
+function displayPosts(postArray) {
+  const container = document.querySelector(".post-list");
+  if (!container) return;
+
+  if (postArray.length === 0) {
+    container.innerHTML = `
+      <div class="empty">
+        <div class="emoji">📱</div>
+        <p class="title">게시물이 없습니다</p>
+        <p class="sub">첫 번째 게시물을 작성해보세요!</p>
       </div>
-    `).join("");
+    `;
+    return;
   }
 
-  loadPosts();
+  container.innerHTML = postArray.map(createPostCard).join("");
+}
+
+displayPosts(posts);
