@@ -1,5 +1,3 @@
-const SERVER_URL = "https://complex-plant-flavor.glitch.me";
-<script type="module">
   import { supabase } from './supabase.js';
 
   async function loadPosts() {
@@ -24,4 +22,3 @@ const SERVER_URL = "https://complex-plant-flavor.glitch.me";
   }
 
   loadPosts();
-</script>
