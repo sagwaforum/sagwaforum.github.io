@@ -16,7 +16,7 @@
     <div class="logo">🍏 사과포럼</div>
     <div class="search-group">
       <input type="text" class="search" placeholder="애플 소식 검색..." />
-      <button class="search-btn">🔍</button>
+      <button class="search-btn" onclick="doSearch()">🔍</button>
     </div>
     <button class="write-button" onclick = "alert('관리자 전용 기능 (아직)') ">글쓰기</button>
   </header>
@@ -45,9 +45,9 @@
     <!-- 메인 -->
     <main class="main">
       <div class="tabs">
-        <button class="active">인기순</button>
-        <button>최신순</button>
-        <button>댓글순</button>
+<!-- <button>인기순</button> -->
+        <button class="active">최신순</button>
+ <!--       <button>댓글순</button> -->
       </div>
 
       <div class="post-list">
