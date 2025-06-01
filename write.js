@@ -1,4 +1,3 @@
-const SERVER_URL = "https://complex-plant-flavor.glitch.me";
 const badWords = [
   "ㅅㅂ", "ㅄ", "ㅈㄹ", "ㅁㅊ", "ㅆㅂ", "ㅅㄲ", "ㄲㅈ", "ㄱㅅㄲ", "ㅂㅅ", "ㄴㄱㅅㄲ",
   "씨발", "시발", "씨바", "시바", "ㅆ바", "ㅆ발", "썅", "개새끼", "개쉐리", "개색기",
@@ -16,39 +15,33 @@ const badWords = [
   "죽어라", "뒤져라", "자살해", "디질래", "죽이고싶다", "찢어죽일", "패버린다", "좆같다", "조까", "좆까", "좃까", "뻐큐", "창녀","딸딸", "좆", "헤으", "하앙", "븅", "자위"
 ];
 
-function containsBadWord(text) {
+
+  function containsBadWord(text) {
   const lowered = text.toLowerCase();
   return badWords.some(word => lowered.includes(word));
-}
-
-// 필터링 함수
-function containsBadWord(text) {
-  return badWords.some(word => text.includes(word));
-}
-
-// document.getElementById("postForm").addEventListener("submit", async (e) => {
-//  e.preventDefault();
-
-  const title = document.getElementById("title").value.trim();
-  const nickname = document.getElementById("nickname").value.trim();
-  const content = document.getElementById("content").value.trim();
-  const category = document.getElementById("category").value;
-
- // if (!title || !nickname || !content) {
- //   alert("모든 항목을 입력해주세요.");
-//    return;
   }
 
-<script type="module">
+
   import { supabase } from './supabase.js';
 
   document.getElementById("postForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
+
+    
     const title = document.getElementById("title").value.trim();
     const nickname = document.getElementById("nickname").value.trim();
     const content = document.getElementById("content").value.trim();
     const category = document.getElementById("category").value;
+
+    if (
+      containsBadWord(title) ||
+      containsBadWord(content) ||
+      containsBadWord(nickname)
+    ) {
+      alert("욕설이 포함된 글은 등록할 수 없습니다.");
+      return;
+    }
 
     const { data, error } = await supabase.from("posts").insert([
       { title, nickname, content, category }
@@ -61,6 +54,6 @@ function containsBadWord(text) {
       window.location.href = "index.html";
     }
   });
-</script>
+
 
   
