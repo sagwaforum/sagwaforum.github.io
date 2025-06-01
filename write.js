@@ -1,3 +1,4 @@
+const SERVER_URL = "https://complex-plant-flavor.glitch.me";
 const badWords = [
   "ㅅㅂ", "ㅄ", "ㅈㄹ", "ㅁㅊ", "ㅆㅂ", "ㅅㄲ", "ㄲㅈ", "ㄱㅅㄲ", "ㅂㅅ", "ㄴㄱㅅㄲ",
   "씨발", "시발", "씨바", "시바", "ㅆ바", "ㅆ발", "썅", "개새끼", "개쉐리", "개색기",
