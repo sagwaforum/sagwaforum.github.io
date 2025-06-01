@@ -25,4 +25,31 @@ function containsBadWord(text) {
   return badWords.some(word => text.includes(word));
 }
 
+document.getElementById("postForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const nickname = document.getElementById("nickname").value.trim();
+  const content = document.getElementById("content").value.trim();
+  const category = document.getElementById("category").value;
+
+  const post = { title, nickname, content, category };
+
+  try {
+    const res = await fetch("https://complex-plant-flavor.glitch.me/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post)
+    });
+
+    const result = await res.json();
+    if (result.success) {
+      alert("글이 등록되었습니다!");
+      window.location.href = "index.html";
+    }
+  } catch (err) {
+    alert("서버 오류: " + err.message);
+  }
+});
+
   
